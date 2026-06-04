@@ -1,0 +1,87 @@
+user:
+  name: Григорий
+  city: Таллинн
+  timezone: Europe/Tallinn
+  language: ru
+  target_duration_minutes: 15
+
+episode:
+  title_template: "Утренний выпуск на {date}"
+  tone: calm
+  include_sections:
+    - weather
+    - city_news
+    - world_news
+    - telegram
+  smart_briefing_options_minutes:
+    - 3
+    - 5
+    - 15
+
+personalization:
+  favorite_topics:
+    - AI
+    - тестирование
+    - Playwright
+    - DevOps
+    - QA
+    - OpenAI
+  blocked_topics: []
+  companies:
+    - Kuehne+Nagel
+  countries:
+    - Эстония
+    - Латвия
+    - США
+
+sources:
+  weather:
+    provider: todo
+    location: Tallinn
+
+  city_news:
+    - name: ERR на русском
+      type: rss
+      url: https://rus.err.ee/rss
+      priority: 1
+
+  world_news:
+    - name: The New York Times World
+      type: rss
+      url: https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+      priority: 1
+    - name: The New York Times Home Page
+      type: rss
+      url: https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+      priority: 2
+
+  telegram_channels:
+    - name: Telegram channel 1001092413834
+      type: telegram_public
+      id: 1001092413834
+      url: ""
+      priority: 1
+
+  youtube_channels: []
+
+ai:
+  provider: openai
+  script_model: configurable
+  translation_model: gpt-4o
+  enabled: true
+
+tts:
+  provider: openai
+  model: gpt-4o-mini-tts
+  voice: coral
+  format: mp3
+  speed: 0.95
+  instructions: "Говори по-русски как живой ведущий утреннего радио-шоу, не как диктор новостей. Тепло, естественно, с легкой улыбкой в голосе, короткими паузами и разговорной интонацией."
+
+delivery:
+  telegram:
+    enabled: true
+    chat_id: todo
+
+scheduler:
+  daily_time: "07:00"
